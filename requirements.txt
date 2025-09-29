@@ -1,5 +1,4 @@
-# Hey, That's My Fish! - Requirements
-# Install these packages to run the game
+
 
 # For the Arcade (desktop) version:
 arcade>=3.3.0
