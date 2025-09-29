@@ -1,0 +1,11 @@
+# Hey, That's My Fish! - Requirements
+# Install these packages to run the game
+
+# For the Arcade (desktop) version:
+arcade>=3.3.0
+
+# For enhanced AI (optional):
+numpy>=1.21.0
+
+# Installation instructions:
+# pip install -r requirements.txt
