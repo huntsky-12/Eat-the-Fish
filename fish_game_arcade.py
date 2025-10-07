@@ -368,6 +368,9 @@ class FishGame(arcade.Window):
             [3, 1, 2, 3, 1, 2, 1],
             [2, 3, 1, 1, 2, 3, 2]
         ]
+        # fish_pattern = [
+        #     [1,2],[2,1]
+        # ]
 
 
 
@@ -474,13 +477,18 @@ class FishGame(arcade.Window):
                     break
 
                 tile = self.get_tile(new_col, new_row)
-                if not tile or not tile.exists or tile.has_penguin:
+                if not tile or not tile.exists:
+                    break
+
+                # extra safeguard: stop if another penguin is on that tile
+                if any(p.col == new_col and p.row == new_row for p in self.penguins):
                     break
 
                 valid_moves.append((new_col, new_row))
                 distance += 1
 
         return valid_moves
+
 
     def place_penguin(self, col: int, row: int, player_id: int) -> bool:
         tile = self.get_tile(col, row)
@@ -1059,8 +1067,7 @@ class FishGame(arcade.Window):
 
     def on_key_press(self, key, modifiers):
         """Handle key presses"""
-        if key == arcade.key.R and self.game_phase == "game_over":
-            self.__init__()
+        if key == arcade.key.R or  self.game_phase == "game_over":
             self.setup()
         elif key == arcade.key.ESCAPE:
             arcade.close_window()
